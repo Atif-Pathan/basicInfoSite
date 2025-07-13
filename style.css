@@ -1,0 +1,335 @@
+/* style.css */
+
+/* --- CSS Variables for Theme --- */
+:root {
+  --background-color: #f5f1ec; /* Soft beige for page background */
+  --text-color: #2d2a26;       /* Dark brown for primary text */
+  --card-bg-color: #ffffff;     /* White for cards/sections */
+  --primary-color: #d4a373;    /* Warm, muted beige-orange for primary actions */
+  --primary-hover: #e49a71;    /* Slightly darker for hover effects */
+  --secondary-color: #a89f95;  /* Muted grey-brown for secondary text */
+  --border-color: #e8e2db;     /* Light beige for borders */
+  --subtle-text-color: #7a706a;/* Softer, lighter brown for less important text */
+  --link-hover-color: #e49a71; /* Matching primary hover for links */
+  --header-footer-bg: #f5f1ec; /* Light beige for header/footer */
+}
+
+/* --- BASE STYLES --- */
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Using system fonts for simplicity and built-in availability */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: 1.6; /* Improved legibility */
+  scroll-behavior: smooth;
+  font-size: 1.05rem; /* Slightly larger base font size */
+}
+
+h1, h2, h3 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; /* Using system fonts for headings too */
+  line-height: 1.2;
+  color: var(--text-color);
+}
+
+h1 {
+  font-size: clamp(2.2rem, 5vw, 3rem); /* Responsive and larger */
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem); /* Responsive and larger */
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+
+p {
+  font-size: 1rem; /* Consistent font size */
+  color: var(--subtle-text-color);
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+a:hover,
+a:focus-visible {
+  /* color: var(--link-hover-color); */
+  text-decoration: underline;
+}
+
+/* --- UTILITY CLASSES --- */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* --- LAYOUT & CONTAINERS --- */
+.container {
+  flex: 1;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  text-align: center; /* Centers block elements like h1, p, and the list's container */
+}
+
+/* --- HEADER --- */
+.site-header {
+  background-color: var(--header-footer-bg);
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.site-header nav {
+  display: flex;
+  justify-content: center; /* Centers the navigation links */
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: var(--text-color);
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  font-size: 1.1rem;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: var(--link-hover-color);
+  background-color: color-mix(in srgb, var(--primary-color) 10%, transparent);
+}
+
+.nav-link.active {
+  color: var(--primary-color);
+  background-color: color-mix(in srgb, var(--primary-color) 15%, transparent);
+}
+
+/* --- PAGE CONTENT SECTIONS --- */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centers content vertically within hero if hero had height */
+  text-align: center;
+}
+
+.hero-content p {
+  max-width: 60ch;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-hover)
+  );
+  color: white;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-family: 'Plus Jakarta Sans', sans-serif; /* Using it for CTA as it's bolder */
+  font-size: 1.1rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px
+    color-mix(in srgb, var(--primary-color) 25%, transparent);
+}
+
+.cta-button:hover,
+.cta-button:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px
+    color-mix(in srgb, var(--primary-color) 35%, transparent);
+  background: linear-gradient(
+    135deg,
+    var(--primary-hover),
+    var(--primary-color)
+  );
+}
+
+.cta-button:active {
+  transform: translateY(0);
+}
+
+.cta-button.secondary {
+  background: var(--secondary-color);
+  box-shadow: 0 4px 12px
+    color-mix(in srgb, var(--secondary-color) 25%, transparent);
+}
+
+.cta-button.secondary:hover,
+.cta-button.secondary:focus-visible {
+  background: color-mix(in srgb, var(--secondary-color) 90%, black);
+}
+
+.project-info {
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  text-align: left; /* Aligns the text content itself to the left */
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  display: table; /* Helps center the block element */
+}
+
+.project-info h2 {
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  margin-bottom: 1rem;
+}
+
+.project-info p {
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.my-list { /* Specific styles for your list */
+  list-style-type: none; /* Remove default bullets */
+  padding-left: 0;       /* Remove default left padding */
+  margin: 1.5rem auto;   /* Center the list block and add vertical spacing */
+  max-width: 60ch;       /* Constrain the width of the list text */
+  text-align: left;      /* Aligns the list items to the left within their space */
+  display: table;        /* Centers the block element itself while keeping text left-aligned */
+}
+
+.my-list li {
+  position: relative;
+  padding-left: 2rem; /* Space for custom bullet */
+  margin-bottom: 0.75rem; /* Space between list items */
+  font-size: 1rem;
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+.my-list li::before {
+  content: '●'; /* Simple bullet character */
+  color: var(--primary-color);
+  position: absolute;
+  left: 0;
+  font-size: 1.2em;
+  top: -0.15em; /* Adjust for vertical alignment */
+  line-height: 1;
+}
+
+/* --- FOOTER --- */
+.site-footer {
+  background-color: var(--header-footer-bg);
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--border-color);
+  margin-top: auto;
+  text-align: center;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.site-footer p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+  .site-header {
+    padding: 1rem 1rem;
+  }
+  .header-content {
+    max-width: unset;
+  }
+  .logo-text {
+    font-size: 1.3rem;
+  }
+  .main-nav {
+    display: none; /* Hide desktop nav */
+  }
+  .hamburgerButton {
+    display: block; /* Show hamburger button */
+  }
+  .mobileNav {
+    display: flex; /* Show mobile nav when open */
+  }
+  .container {
+    padding: 2rem 1rem;
+  }
+  .hero-content {
+    padding: 3rem 0;
+  }
+  h1 {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+  .subheadline {
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+  }
+  .features-section {
+    padding: 3rem 1rem;
+  }
+  .features-grid {
+    grid-template-columns: 1fr; /* Stack features on small screens */
+  }
+  .feature-card {
+    padding: 1.5rem;
+  }
+  .site-footer {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text {
+    font-size: 1.2rem;
+  }
+  .hamburgerButton {
+    font-size: 1.5rem;
+  }
+  .mobileNavLink {
+    font-size: 1.1rem;
+    padding: 0.6rem;
+  }
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- REDUCED MOTION --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
